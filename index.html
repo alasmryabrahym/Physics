@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بوابة الفيزياء - أ. إبراهيم الأسمري</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2c3e50; /* لون كحلي وقور */
+            --accent-color: #e74c3c;  /* لون أحمر للتنبيه */
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 3px solid var(--accent-color);
+            padding-bottom: 20px;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .header h1 {
+            color: var(--primary-color);
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            color: #555;
+            font-size: 20px;
+            margin: 5px 0;
+        }
+
+        .teacher-name {
+            background: var(--primary-color);
+            color: white;
+            padding: 5px 20px;
+            border-radius: 20px;
+            display: inline-block;
+            font-weight: bold;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 25px;
+            width: 100%;
+            max-width: 1000px;
+            padding: 20px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 30px 20px;
+            text-align: center;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s ease;
+            border: 1px solid #ddd;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            border-color: var(--accent-color);
+        }
+
+        .icon { 
+            font-size: 50px; 
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .card span {
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        footer {
+            margin-top: 50px;
+            padding: 20px;
+            color: #7f8c8d;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        @media (max-width: 600px) {
+            .grid-container { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+            .header h1 { font-size: 22px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>ثانوية الأمير عبدالمجيد بالرياض</h1>
+        <p>بوابة الفيزياء التحصيلية الرقمية ⚡</p>
+        <div class="teacher-name">إعداد الأستاذ: إبراهيم الأسمري</div>
+    </div>
+
+    <div class="grid-container">
+        <a href="ضع_رابط_الاختبار_هنا" target="_blank" class="card">
+            <div class="icon">⚛️</div>
+            <span>نموذج الفيزياء 1</span>
+        </a>
+
+        <a href="ضع_رابط_الاختبار_هنا" target="_blank" class="card">
+            <div class="icon">🔋</div>
+            <span>نموذج الفيزياء 2</span>
+        </a>
+
+        <a href="ضع_رابط_الاختبار_هنا" target="_blank" class="card">
+            <div class="icon">🧲</div>
+            <span>نموذج الفيزياء 3</span>
+        </a>
+
+        <a href="ضع_رابط_الاختبار_هنا" target="_blank" class="card">
+            <div class="icon">🔭</div>
+            <span>نموذج الفيزياء 4</span>
+        </a>
+
+        </div>
+
+    <footer>
+        <p>تم التصميم لدعم مسيرة أبنائنا الطلاب في ثانوية الأمير عبدالمجيد</p>
+        <p>© 2026 جميع الحقوق محفوظة - أ. إبراهيم الأسمري</p>
+    </footer>
+
+</body>
+</html>
