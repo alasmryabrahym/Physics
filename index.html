@@ -7,8 +7,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #2c3e50; /* لون كحلي وقور */
-            --accent-color: #e74c3c;  /* لون أحمر للتنبيه */
+            --primary-color: #2c3e50;
+            --accent-color: #e74c3c;
             --bg-color: #f8f9fa;
             --card-bg: #ffffff;
         }
@@ -25,25 +25,14 @@
 
         .header {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             border-bottom: 3px solid var(--accent-color);
             padding-bottom: 20px;
             width: 100%;
             max-width: 800px;
         }
 
-        .header h1 {
-            color: var(--primary-color);
-            font-size: 28px;
-            margin-bottom: 5px;
-        }
-
-        .header p {
-            color: #555;
-            font-size: 20px;
-            margin: 5px 0;
-        }
-
+        .header h1 { color: var(--primary-color); font-size: 28px; margin-bottom: 5px; }
         .teacher-name {
             background: var(--primary-color);
             color: white;
@@ -51,6 +40,32 @@
             border-radius: 20px;
             display: inline-block;
             font-weight: bold;
+            margin-top: 10px;
+        }
+
+        /* تنسيق شريط البحث */
+        .search-container {
+            width: 100%;
+            max-width: 500px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        #searchInput {
+            width: 100%;
+            padding: 15px 25px;
+            border-radius: 30px;
+            border: 2px solid #ddd;
+            font-family: 'Tajawal', sans-serif;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.3s;
+            box-sizing: border-box;
+        }
+
+        #searchInput:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 10px rgba(231, 76, 60, 0.1);
         }
 
         .grid-container {
@@ -59,7 +74,6 @@
             gap: 25px;
             width: 100%;
             max-width: 1000px;
-            padding: 20px;
         }
 
         .card {
@@ -71,7 +85,9 @@
             color: #333;
             transition: all 0.3s ease;
             border: 1px solid #ddd;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .card:hover {
@@ -80,28 +96,16 @@
             border-color: var(--accent-color);
         }
 
-        .icon { 
-            font-size: 50px; 
-            margin-bottom: 15px;
-            display: block;
-        }
+        .icon { font-size: 50px; margin-bottom: 15px; }
+        .card span { font-weight: bold; font-size: 16px; }
 
-        .card span {
-            font-weight: bold;
-            font-size: 16px;
-        }
+        /* إخفاء الكروت التي لا تطابق البحث */
+        .hidden { display: none; }
 
-        footer {
-            margin-top: 50px;
-            padding: 20px;
-            color: #7f8c8d;
-            font-size: 14px;
-            text-align: center;
-        }
+        footer { margin-top: 50px; padding: 20px; color: #7f8c8d; font-size: 14px; text-align: center; }
 
         @media (max-width: 600px) {
             .grid-container { grid-template-columns: repeat(2, 1fr); gap: 15px; }
-            .header h1 { font-size: 22px; }
         }
     </style>
 </head>
@@ -113,33 +117,54 @@
         <div class="teacher-name">إعداد الأستاذ: إبراهيم الأسمري</div>
     </div>
 
-    <div class="grid-container">
-        <a href="ضع_رابط_الاختبار_هنا" target="_blank" class="card">
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="ابحث برقم النموذج (مثلاً: 1)...">
+    </div>
+
+    <div class="grid-container" id="gridContainer">
+        <a href="#" class="card">
             <div class="icon">⚛️</div>
             <span>نموذج الفيزياء 1</span>
         </a>
 
-        <a href="ضع_رابط_الاختبار_هنا" target="_blank" class="card">
+        <a href="#" class="card">
             <div class="icon">🔋</div>
             <span>نموذج الفيزياء 2</span>
         </a>
 
-        <a href="ضع_رابط_الاختبار_هنا" target="_blank" class="card">
+        <a href="#" class="card">
             <div class="icon">🧲</div>
             <span>نموذج الفيزياء 3</span>
         </a>
 
-        <a href="ضع_رابط_الاختبار_هنا" target="_blank" class="card">
+        <a href="#" class="card">
             <div class="icon">🔭</div>
             <span>نموذج الفيزياء 4</span>
         </a>
-
-        </div>
+    </div>
 
     <footer>
         <p>تم التصميم لدعم مسيرة أبنائنا الطلاب في ثانوية الأمير عبدالمجيد</p>
         <p>© 2026 جميع الحقوق محفوظة - أ. إبراهيم الأسمري</p>
     </footer>
+
+    <script>
+        const searchInput = document.getElementById('searchInput');
+        const cards = document.querySelectorAll('.card');
+
+        searchInput.addEventListener('input', (e) => {
+            const value = e.target.value.toLowerCase();
+            
+            cards.forEach(card => {
+                const text = card.querySelector('span').textContent.toLowerCase();
+                if (text.includes(value)) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        });
+    </script>
 
 </body>
 </html>
