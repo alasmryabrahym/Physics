@@ -7,10 +7,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #2c3e50; /* لون كحلي وقور */
-            --accent-color: #e74c3c;  /* لون أحمر للتنبيه */
+            --primary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --success-color: #27ae60;
             --bg-color: #f8f9fa;
-            --card-bg: #ffffff;
         }
 
         body {
@@ -25,83 +25,120 @@
 
         .header {
             text-align: center;
-            margin-bottom: 40px;
-            border-bottom: 3px solid var(--accent-color);
-            padding-bottom: 20px;
+            margin-bottom: 20px;
             width: 100%;
             max-width: 800px;
         }
 
-        .header h1 {
-            color: var(--primary-color);
-            font-size: 28px;
-            margin-bottom: 5px;
-        }
-
-        .header p {
-            color: #555;
-            font-size: 20px;
-            margin: 5px 0;
-        }
-
+        .header h1 { color: var(--primary-color); font-size: 28px; margin-bottom: 5px; }
+        
         .teacher-name {
             background: var(--primary-color);
             color: white;
-            padding: 5px 20px;
-            border-radius: 20px;
+            padding: 8px 25px;
+            border-radius: 25px;
             display: inline-block;
             font-weight: bold;
+            margin-top: 10px;
+            font-size: 18px;
         }
 
+        .divider {
+            width: 100%;
+            max-width: 700px;
+            height: 3px;
+            background-color: var(--accent-color);
+            margin: 20px 0 40px 0;
+        }
+
+        /* قسم إرسال النتيجة */
+        .result-section {
+            width: 100%;
+            max-width: 600px;
+            background: #fff;
+            border: 2px dashed var(--success-color);
+            padding: 25px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .result-section p {
+            margin: 0 0 15px 0;
+            font-weight: bold;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .send-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--success-color);
+            color: white;
+            padding: 15px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.3s;
+            gap: 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .send-btn:hover {
+            background-color: #219150;
+            transform: scale(1.05);
+        }
+
+        /* شبكة الاختبارات */
         .grid-container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 25px;
+            gap: 20px;
             width: 100%;
             max-width: 1000px;
-            padding: 20px;
         }
 
         .card {
-            background: var(--card-bg);
+            background: #ffffff;
             border-radius: 15px;
-            padding: 30px 20px;
+            padding: 30px 10px;
             text-align: center;
             text-decoration: none;
             color: #333;
-            transition: all 0.3s ease;
-            border: 1px solid #ddd;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: 0.3s;
+            border: 1px solid #eee;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.1);
             border-color: var(--accent-color);
         }
 
-        .icon { 
-            font-size: 50px; 
-            margin-bottom: 15px;
-            display: block;
-        }
-
-        .card span {
-            font-weight: bold;
-            font-size: 16px;
-        }
+        .icon { font-size: 50px; margin-bottom: 15px; display: block; }
+        .card span { font-weight: bold; font-size: 16px; }
 
         footer {
-            margin-top: 50px;
+            margin-top: 60px;
             padding: 20px;
-            color: #7f8c8d;
+            color: #95a5a6;
             font-size: 14px;
             text-align: center;
+            line-height: 1.8;
         }
 
         @media (max-width: 600px) {
             .grid-container { grid-template-columns: repeat(2, 1fr); gap: 15px; }
             .header h1 { font-size: 22px; }
+            .send-btn { width: 90%; font-size: 16px; }
         }
     </style>
 </head>
@@ -113,43 +150,58 @@
         <div class="teacher-name">إعداد الأستاذ: إبراهيم الأسمري</div>
     </div>
 
+    <div class="divider"></div>
+
+    <div class="result-section">
+        <p>أنهيت الاختبار؟ صور الشاشة وأرسلها 📸</p>
+        <button onclick="handleEmailClick()" class="send-btn">
+            <span>📩 إرسال النتيجة للإيميل</span>
+        </button>
+    </div>
+
     <div class="grid-container">
         <a href="https://alasmryabrahym.github.io/Number-1/" target="_blank" class="card">
             <div class="icon">⚛️</div>
             <span>نموذج الفيزياء 1</span>
         </a>
-<div class="grid-container">
+
         <a href="https://alasmryabrahym.github.io/Number-2/" target="_blank" class="card">
-            <div class="icon">🏎️</div>
+            <div class="icon">🔋</div>
             <span>نموذج الفيزياء 2</span>
         </a>
-<div class="grid-container">
-        <a href="ضع_رابط_الاختبار_هنا" target="_blank" class="card">
-            <div class="icon">🔥</div>
+
+        <a href="#" class="card">
+            <div class="icon">🧲</div>
             <span>نموذج الفيزياء 3</span>
         </a>
 
-        <a href="ضع_رابط_الاختبار_هنا" target="_blank" class="card">
-            <div class="icon">🔋</div>
+        <a href="#" class="card">
+            <div class="icon">🔭</div>
             <span>نموذج الفيزياء 4</span>
         </a>
-
-        <a href="ضع_رابط_الاختبار_هنا" target="_blank" class="card">
-            <div class="icon">🧲</div>
-            <span>نموذج الفيزياء 5</span>
-        </a>
-
-        <a href="ضع_رابط_الاختبار_هنا" target="_blank" class="card">
-            <div class="icon">🔭</div>
-            <span>نموذج الفيزياء 6</span>
-        </a>
-
-        </div>
+    </div>
 
     <footer>
-        <p>تم التصميم لدعم مسيرة أبنائنا الطلاب في ثانوية الأمير عبدالمجيد</p>
-        <p>© 2026 جميع الحقوق محفوظة - أ. إبراهيم الأسمري</p>
+        تم التصميم لدعم مسيرة أبنائنا الطلاب في ثانوية الأمير عبدالمجيد بالرياض<br>
+        © 2026 جميع الحقوق محفوظة - أ. إبراهيم الأسمري
     </footer>
+
+    <script>
+        function handleEmailClick() {
+            const email = "alasmryabrahym123@gmail.com";
+            const subject = encodeURIComponent("نتيجة اختبار الفيزياء التحصيلي");
+            const body = encodeURIComponent("السلام عليكم أستاذ إبراهيم، مرفق لكم صورة نتيجة الاختبار الخاص بي..");
+            
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+            if (isMobile) {
+                window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+            } else {
+                const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${subject}&body=${body}`;
+                window.open(gmailUrl, '_blank');
+            }
+        }
+    </script>
 
 </body>
 </html>
