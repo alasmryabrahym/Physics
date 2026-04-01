@@ -7,11 +7,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #2c3e50; /* كحلي رسمي */
-            --accent-color: #e74c3c;  /* أحمر للتنبيه */
-            --success-color: #27ae60; /* أخضر للإرسال */
-            --bg-color: #f4f7f6;
-            --card-bg: #ffffff;
+            --primary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --success-color: #27ae60;
+            --bg-color: #f8f9fa;
         }
 
         body {
@@ -27,57 +26,51 @@
         .header {
             text-align: center;
             margin-bottom: 30px;
-            border-bottom: 4px solid var(--accent-color);
-            padding-bottom: 20px;
             width: 100%;
             max-width: 800px;
         }
 
-        .header h1 { color: var(--primary-color); font-size: 26px; margin: 0; }
+        .header h1 { color: var(--primary-color); font-size: 28px; margin-bottom: 5px; }
+        .header p { color: #7f8c8d; font-size: 18px; margin: 5px 0; }
+        
         .teacher-name {
             background: var(--primary-color);
             color: white;
-            padding: 6px 25px;
+            padding: 8px 25px;
             border-radius: 25px;
             display: inline-block;
             font-weight: bold;
-            margin-top: 15px;
+            margin-top: 10px;
             font-size: 18px;
         }
 
-        /* تنسيق قسم البحث وإرسال النتيجة */
-        .controls-container {
+        .divider {
+            width: 100%;
+            max-width: 700px;
+            height: 3px;
+            background-color: var(--accent-color);
+            margin: 20px 0 40px 0;
+        }
+
+        /* تنسيق قسم إرسال النتيجة */
+        .result-section {
             width: 100%;
             max-width: 600px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            margin-bottom: 40px;
-        }
-
-        #searchInput {
-            width: 100%;
-            padding: 15px 25px;
-            border-radius: 30px;
-            border: 2px solid #ddd;
-            font-family: 'Tajawal', sans-serif;
-            font-size: 16px;
-            outline: none;
-            box-sizing: border-box;
-            transition: 0.3s;
-        }
-
-        #searchInput:focus { border-color: var(--primary-color); }
-
-        .result-box {
             background: #fff;
             border: 2px dashed var(--success-color);
-            padding: 15px;
-            border-radius: 15px;
+            padding: 25px;
+            border-radius: 20px;
             text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
         }
 
-        .result-box p { margin: 0 0 10px 0; font-weight: bold; color: #333; }
+        .result-section p {
+            margin: 0 0 15px 0;
+            font-weight: bold;
+            font-size: 18px;
+            color: #333;
+        }
 
         .send-btn {
             display: inline-flex;
@@ -85,18 +78,22 @@
             justify-content: center;
             background-color: var(--success-color);
             color: white;
-            padding: 12px 20px;
+            padding: 12px 35px;
             border-radius: 50px;
             text-decoration: none;
             font-weight: bold;
-            font-size: 15px;
+            font-size: 18px;
             transition: 0.3s;
-            gap: 8px;
+            gap: 10px;
+            border: none;
         }
 
-        .send-btn:hover { background-color: #219150; transform: translateY(-2px); }
+        .send-btn:hover {
+            background-color: #219150;
+            transform: scale(1.05);
+        }
 
-        /* تنسيق الشبكة والكروت */
+        /* تنسيق شبكة الاختبارات */
         .grid-container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
@@ -106,7 +103,7 @@
         }
 
         .card {
-            background: var(--card-bg);
+            background: #ffffff;
             border-radius: 15px;
             padding: 30px 10px;
             text-align: center;
@@ -114,32 +111,34 @@
             color: #333;
             transition: 0.3s;
             border: 1px solid #eee;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 12px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.1);
             border-color: var(--accent-color);
         }
 
-        .icon { font-size: 45px; margin-bottom: 12px; display: block; }
-        .card span { font-weight: bold; font-size: 16px; color: var(--primary-color); }
-
-        .hidden { display: none; }
+        .icon { font-size: 50px; margin-bottom: 15px; display: block; }
+        .card span { font-weight: bold; font-size: 16px; color: #333; }
 
         footer {
             margin-top: 60px;
             padding: 20px;
             color: #95a5a6;
-            font-size: 13px;
+            font-size: 14px;
             text-align: center;
-            line-height: 1.6;
+            line-height: 1.8;
         }
 
         @media (max-width: 600px) {
-            .grid-container { grid-template-columns: repeat(2, 1fr); }
-            .header h1 { font-size: 20px; }
+            .grid-container { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+            .header h1 { font-size: 22px; }
+            .send-btn { width: 90%; }
         }
     </style>
 </head>
@@ -148,37 +147,35 @@
     <div class="header">
         <h1>ثانوية الأمير عبدالمجيد بالرياض</h1>
         <p>بوابة الفيزياء التحصيلية الرقمية ⚡</p>
-        <div class="teacher-name">أ. إبراهيم الأسمري</div>
+        <div class="teacher-name">إعداد الأستاذ: إبراهيم الأسمري</div>
     </div>
 
-    <div class="controls-container">
-        <input type="text" id="searchInput" placeholder="ابحث عن رقم النموذج...">
+    <div class="divider"></div>
 
-        <div class="result-box">
-            <p>أنهيت الاختبار؟ صور الشاشة وأرسل نتيجتك  للأستاذ 📸</p>
-            <a href="mailto:alasmryabrahym123@gmail.com?subject=نتيجة اختبار الفيزياء التحصيلي - الطالب:&body=الرجاء إرفاق صورة النتيجة هنا:" class="send-btn">
-                <span>📧 إرسال النتيجة للإيميل</span>
-            </a>
-        </div>
+    <div class="result-section">
+        <p>أنهيت الاختبار؟ صور الشاشة وأرسلها 📸</p>
+        <a href="mailto:alasmryabrahym123@gmail.com?subject=نتيجة اختبار الفيزياء التحصيلي&body=السلام عليكم أستاذ إبراهيم، مرفق لكم صورة نتيجة الاختبار الخاص بي.." class="send-btn">
+            <span>📩 إرسال النتيجة للإيميل</span>
+        </a>
     </div>
 
-    <div class="grid-container" id="gridContainer">
-        <a href="رابط_الاختبار_1" target="_blank" class="card">
+    <div class="grid-container">
+        <a href="رابط_الاختبار_هنا" target="_blank" class="card">
             <div class="icon">⚛️</div>
             <span>نموذج الفيزياء 1</span>
         </a>
 
-        <a href="رابط_الاختبار_2" target="_blank" class="card">
+        <a href="رابط_الاختبار_هنا" target="_blank" class="card">
             <div class="icon">🔋</div>
             <span>نموذج الفيزياء 2</span>
         </a>
 
-        <a href="رابط_الاختبار_3" target="_blank" class="card">
+        <a href="رابط_الاختبار_هنا" target="_blank" class="card">
             <div class="icon">🧲</div>
             <span>نموذج الفيزياء 3</span>
         </a>
 
-        <a href="رابط_الاختبار_4" target="_blank" class="card">
+        <a href="رابط_الاختبار_هنا" target="_blank" class="card">
             <div class="icon">🔭</div>
             <span>نموذج الفيزياء 4</span>
         </a>
@@ -188,19 +185,6 @@
         تم التصميم لدعم مسيرة أبنائنا الطلاب في ثانوية الأمير عبدالمجيد<br>
         © 2026 جميع الحقوق محفوظة - أ. إبراهيم الأسمري
     </footer>
-
-    <script>
-        const searchInput = document.getElementById('searchInput');
-        const cards = document.querySelectorAll('.card');
-
-        searchInput.addEventListener('input', (e) => {
-            const value = e.target.value.toLowerCase();
-            cards.forEach(card => {
-                const text = card.querySelector('span').textContent.toLowerCase();
-                card.classList.toggle('hidden', !text.includes(value));
-            });
-        });
-    </script>
 
 </body>
 </html>
